@@ -1,25 +1,56 @@
-# SKELETON - Module template
+# GO Move
 
-[English](README.md) | [Español](README_ES.md)
+## Description
+
+This module allows to use an ingame addon (the addon is provided in the repository) to move/copy/turn gameobjects in a simple way. (See GIF for an example)
+If used alongside of the [Objscale Module](https://github.com/Tralenor/mod-objscale) it can also be used to change the size of GameObjects.
+
+This is a port of the TC-Corepatch by [Rochet2](https://github.com/Rochet2) https://github.com/Rochet2/TrinityCore/tree/gomove_3.3.5/src/server/scripts/Custom/GOMove
+Note that Rochet2's [GOCommand](https://github.com/Rochet2/GOCommand) is a LUA-Addon which provides essentially the same functionallity as the corepatch mentioned above and this module, but is dependend on a Trinitycore feature, the addon protocol, which is currently not supported in AzerothCore.
+The addon protocol is part of [TrinityCore/TrinityCore#20074](https://github.com/TrinityCore/TrinityCore/pull/20074), if this change is imported to AzerothCore in the future, this module will be obsolete and I highly recommend to switch to the LUA-Addon only implementation.
+
+## How to use ingame
+
+Place the GOMove Addon folder (located in this repository under client-addon) in your client under ./Interface/Addon/
+In the Char selection, make sure to activate the addon. 
+If the Addon UI doesn't show automatically, you can open it with: 
+
+```
+/gomove
+```
+
+Walk up to any GameObject - search for them by using the search button. Now all nearby GameObject should appear in your list.
+All Objects on your list can now be selected/deselected and moved/turned/scaled with the addon.
+Have Fun while building some Stuff. 
 
 
-## How to create your own module
-
-1. Use the script `create_module.sh` located in [`modules/`](https://github.com/azerothcore/azerothcore-wotlk/tree/master/modules) to start quickly with all the files you need and your git repo configured correctly (heavily recommended).
-1. You can then use these scripts to start your project: https://github.com/azerothcore/azerothcore-boilerplates
-1. Do not hesitate to compare with some of our newer/bigger/famous modules.
-1. Edit the `README.md` and other files (`include.sh` etc...) to fit your module. Note: the README is automatically created from `README_example.md` when you use the script `create_module.sh`.
-1. Publish your module to our [catalogue](https://github.com/azerothcore/modules-catalogue).
 
 
-## How to test your module?
+## Requirements
 
-Disable PCH (precompiled headers) and try to compile. To disable PCH, set `-DNOPCH=1` with Cmake (more info [here](http://www.azerothcore.org/wiki/CMake-options)).
+My_new_module requires:
 
-If you forgot some headers, it is time to add them!
+- AzerothCore v4.0.0+
+- For persistent saving of scaling (size changes) the Objscale Module [Objscale Module](https://github.com/Tralenor/mod-objscale) is needed. (Objscale dependends on two custom Hooks: OnCreatureSaveToDB and OnGameObjectSaveToDB - Which are provided in a Pullrequest for the main AC repo. Relevant PR: https://github.com/azerothcore/azerothcore-wotlk/pull/11246 (Relevant git branch can be found here: https://github.com/Tralenor/azerothcore-wotlk/tree/On-Creature/GameObject-SaveToDB-Hook ))
 
-## Licensing
 
-The default license of the skeleton-module template is the MIT but you can use a different license for your own modules.
+## Installation
 
-So modules can also be kept private. However, if you need to add new hooks to the core, as well as improving existing ones, you have to share your improvements because the main core is released under the AGPL license. Please [provide a PR](https://www.azerothcore.org/wiki/How-to-create-a-PR) if that is the case.
+```
+1) Simply `git clone` the module under the `modules` directory of your AzerothCore source or copy paste it manually.
+2) Import the SQL to the right Database (auth, world or characters).
+3) Re-run cmake and launch a clean build of AzerothCore.
+4) "install" LUA-Addon in the Client (see How to use ingame Section for more Information)
+```
+
+## Edit the module's configuration (optional)
+
+If you need to change the module configuration, go to your server configuration directory (where your `worldserver` or `worldserver.exe` is), copy `my_module.conf.dist` to `my_module.conf` and edit that new file.
+
+
+## Credits
+
+* [Tralenor](https://github.com/Tralenor) (author of the module)
+* [Rochet2](https://github.com/Rochet2) (Original Author of GOMove)
+* Original GOMove Idea by Mordred
+* AzerothCore: [repository](https://github.com/azerothcore) - [website](http://azerothcore.org/) - [discord chat community](https://discord.gg/PaqQRkd)
