@@ -1,7 +1,7 @@
 /*
 GOMove By Rochet2
 http://rochet2.github.io/
-Port as AC-Module by Tralenor
+Port as AC-Module and slight rework by Tralenor
 Original idea by Mordred
 Objscale Integration partly from Magnus
 */

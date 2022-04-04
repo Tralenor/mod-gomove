@@ -1,7 +1,9 @@
 /*
 GOMove By Rochet2
-Original idea by Mordred
 http://rochet2.github.io/
+Port as AC-Module and slight rework by Tralenor
+Original idea by Mordred
+Objscale Integration partly from Magnus
 */
 
 #ifndef GOMOVE_H
