@@ -57,7 +57,7 @@ Want to place objects with a spell (green targetting circle)?
 
 ## Requirements
 
-My_new_module requires:
+GO-Move requires:
 
 - AzerothCore v4.0.0+
 - For persistent saving of scaling (size changes) the [Objscale Module](https://github.com/Tralenor/mod-objscale) is needed. Thus its optional, but highly recommended.
