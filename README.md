@@ -47,6 +47,13 @@ Have Fun while building some Stuff.
 
 ![UI-Overview](/guide.jpg)
 
+### Advanced Usage
+
+Want to place objects with a spell (green targetting circle)?
+- execute this to world database `INSERT INTO spell_script_names (spell_id, ScriptName) VALUES (27651, 'GOMove_spell_place');`
+- learn spell `27651`
+- Now you can put the entry of the object in Send input box and click Send. Then you can spawn the object with the spell. All objects spawned will be saved for the spell spawning as well (spawned from favourites list for example)
+
 
 ## Requirements
 
