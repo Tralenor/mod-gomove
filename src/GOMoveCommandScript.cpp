@@ -312,19 +312,35 @@ public:
     }
 };
 
+bool GOMoveAnnounceModule;
+class GOMove_conf : public WorldScript
+{
+public:
+    GOMove_conf() : WorldScript("GOMove_conf") { }
+
+    void OnBeforeConfigLoad(bool /*reload*/) override
+    {
+        GOMoveAnnounceModule = sConfigMgr->GetOption<bool>("GOMove.Announce", 1);
+    }
+};
+
+
 class GoMoveAnnounce : public PlayerScript
 {
 public:
-    GoMoveAnnounce() : PlayerScript("GoMoveAnnounce") { }
 
-    void OnLogin(Player* player) override
+    GoMoveAnnounce() : PlayerScript("GoMoveAnnounce") {}
+
+    void OnLogin(Player* player)
     {
-        if (sConfigMgr->GetOption<bool>("GoMove.Enable", false))
+        // Announce Module
+        if (GOMoveAnnounceModule)
         {
-            ChatHandler(player->GetSession()).SendSysMessage("This Server runs the GO-Move Module");
+            ChatHandler(player->GetSession()).SendSysMessage("This server is running the |cff4CFF00GO-Move |rmodule");
         }
     }
 };
+
 
 void AddGOMoveScripts()
 {

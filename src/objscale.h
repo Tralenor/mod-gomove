@@ -11,8 +11,8 @@ The scaling values or only persistently saved if the objscale module is used.
 class Objscale : public DataMap::Base
 {
 public:
-    Objscale() {}
-    Objscale(float scale) : scale(scale) {}
+    Objscale() {};
+    Objscale(float scale) : scale(scale) {};
     float scale = -1.0f;
 };
 
