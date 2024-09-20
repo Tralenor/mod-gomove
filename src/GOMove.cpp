@@ -63,7 +63,7 @@ GameObject * GOMove::GetGameObject(Player * player, ObjectGuid::LowType lowguid)
 
 void GOMove::SendAdd(Player * player, ObjectGuid::LowType lowguid)
 {
-    GameObjectData const* data = sObjectMgr->GetGOData(lowguid);
+    GameObjectData const* data = sObjectMgr->GetGameObjectData(lowguid);
     if (!data)
         return;
     GameObjectTemplate const* temp = sObjectMgr->GetGameObjectTemplate(data->id);
@@ -179,7 +179,7 @@ GameObject * GOMove::SpawnGameObject(Player* player, float x, float y, float z, 
     }
 
     /// @todo is it really necessary to add both the real and DB table guid here ?
-    sObjectMgr->AddGameobjectToGrid(guidLow, sObjectMgr->GetGOData(guidLow));
+    sObjectMgr->AddGameobjectToGrid(guidLow, sObjectMgr->GetGameObjectData(guidLow));
 
     if (object)
         SendAdd(player, guidLow);
@@ -220,9 +220,9 @@ GameObject* GOMove::MoveGameObject(Player* player, float x, float y, float z, fl
 
     
     // update which cell has this gameobject registered for loading
-    sObjectMgr->RemoveGameobjectFromGrid(guidLow, object->GetGOData());
+    sObjectMgr->RemoveGameobjectFromGrid(guidLow, object->GetGameObjectData());
     object->SaveToDB();
-    sObjectMgr->AddGameobjectToGrid(guidLow, object->GetGOData());
+    sObjectMgr->AddGameobjectToGrid(guidLow, object->GetGameObjectData());
 
     // Generate a completely new spawn with new guid
     // 3.3.5a client caches recently deleted objects and brings them back to life

@@ -8,12 +8,9 @@ Objscale Integration partly from Magnus
 This File provides the commands used by the LUA-Addon
 */
 
-#include "GOMove.h"
-#include <math.h>
-#include <set>
-#include <sstream>
-#include <string>
 #include "Chat.h"
+#include "Config.h"
+#include "GOMove.h"
 #include "GameObject.h"
 #include "Language.h"
 #include "Map.h"
@@ -24,16 +21,17 @@ This File provides the commands used by the LUA-Addon
 #include "SpellScript.h"
 #include "WorldPacket.h"
 #include "WorldSession.h"
-#include "Player.h"
-#include "Config.h"
+#include <math.h>
+#include <set>
+#include <sstream>
+#include <string>
 
+using namespace Acore::ChatCommands;
 
 class GOMove_commandscript : public CommandScript
 {
 public:
-    GOMove_commandscript() : CommandScript("GOMove_commandscript")
-    {
-    }
+    GOMove_commandscript() : CommandScript("GOMove_commandscript") { }
 
     enum commandIDs
     {
@@ -70,12 +68,13 @@ public:
         SPAWNSPELL,
     };
 
-    std::vector<ChatCommand> GetCommands() const override
+    ChatCommandTable GetCommands() const override
     {
-        static std::vector<ChatCommand> GOMoveCommandTable =
+        static ChatCommandTable GOMoveCommandTable =
         {
-            {"gomove", SEC_ADMINISTRATOR,false, &GOMove_Command, ""}
+            {"gomove", GOMove_Command, SEC_ADMINISTRATOR, Console::No }
         };
+
         return GOMoveCommandTable;
     }
 
