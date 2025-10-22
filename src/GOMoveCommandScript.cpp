@@ -305,7 +305,7 @@ class GOMove_player_track : public PlayerScript
 public:
     GOMove_player_track() : PlayerScript("GOMove_player_track") { }
 
-    void OnLogout(Player* player) override
+    void OnPlayerLogout(Player* player) override
     {
         GOMove::Store.SpawnQueRem(player->GetGUID());
     }
