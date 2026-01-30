@@ -258,7 +258,7 @@ GameObject* GOMove::ResizeGameObject(Player* player, float scale, uint32 p, Obje
     object->CustomData.Set("scale", new Objscale(scale));
     object->SetObjectScale(scale);
 
-    object->DestroyForNearbyPlayers();
+    object->DestroyForVisiblePlayers();
     object->UpdateObjectVisibility();
     object->SaveToDB();
 
