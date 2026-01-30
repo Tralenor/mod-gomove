@@ -312,6 +312,6 @@ std::list<GameObject*> GOMove::GetNearbyGameObjects(Player* player, float range)
     std::list<GameObject*> objects;
     Acore::GameObjectInRangeCheck check(x, y, z, range);
     Acore::GameObjectListSearcher<Acore::GameObjectInRangeCheck> searcher(player, objects, check);
-    Cell::VisitGridObjects(player, searcher, SIZE_OF_GRIDS);
+    Cell::VisitObjects(player, searcher, SIZE_OF_GRIDS);
     return objects;
 }
